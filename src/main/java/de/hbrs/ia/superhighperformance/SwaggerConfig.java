@@ -19,7 +19,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("de.hbrs.ia.superhighperformance"))
-				.paths(regex("/(evaluationrecord|salesmen).*")).build();
+				.paths(regex("/(salesmen).*")).build();
 	}
 
 	@Override

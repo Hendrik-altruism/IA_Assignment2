@@ -55,42 +55,6 @@ public class SalesMenController {
 		}
 	}
 
-	@RequestMapping(value = "/{sid}", method = RequestMethod.GET)
-	public ResponseEntity<SalesMen> getSalesMen(@PathVariable Integer sid) {
-		try {
-			return new ResponseEntity<>(hrManager.readSalesMan(sid), HttpStatus.OK);
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-
-
-	@RequestMapping(value = "/{sid}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteSalesMen(@PathVariable Integer sid) {
-		try {
-			hrManager.deleteSalesMan(sid);
-
-			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-
-	@RequestMapping(value = "/", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateSalesMen(@RequestBody SalesMen salesmen) {
-		if (isSalesMenInvalid(salesmen)) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-
-		try {
-			hrManager.updateSalesMan(salesmen);
-
-			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (InvalidInputException e) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-	}
-
 	private boolean isSalesMenInvalid(SalesMen salesmen) {
 		return salesmen == null
 				|| salesmen.getFirstName() == null || salesmen.getFirstName().isEmpty()
